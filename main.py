@@ -1,5 +1,7 @@
 import time
 import math
+import sys
+from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton
 
 def prepare_command():
   tocompute = input("How many primes would you like to compute?: ")
@@ -126,5 +128,54 @@ def run_atkin_optimized():
   print('Finished in', elapsed, 'seconds.')
   print('Used', elapsed_cpu, 'seconds of cpu time.')
 
+class MainWidget(QWidget):
+  def __init__(self, parent):
+    super().__init__(parent=parent)
+    self.label = QLabel("Run prime generator")
+    self.run_button = QPushButton("Run primes")
+
+
+class Window(QMainWindow):
+  def __init__(self):
+    super().__init__(parent=None)
+    self.setWindowTitle("Fun With Primes")
+
+    main_widget = MainWidget(self)
+    self.setCentralWidget(main_widget)
+    self._createMenu()
+    self._createToolBar()
+    self._createStatusBar()
+
+  def _createMenu(self):
+    menu = self.menuBar().addMenu("&Menu")
+    menu.addAction("&Exit", self.close)
+
+  def _createToolBar(self):
+    tools = QToolBar()
+    tools.addAction("Exit", self.close)
+    self.addToolBar(tools)
+
+  def _createStatusBar(self):
+    status = QStatusBar()
+    status.showMessage("Status bar")
+    self.setStatusBar(status)
+
+  def runPrimes(self):
+    match self.main_widget.prime_mode:
+      case "Atkin":
+        run_atkin()
+      case "Atkin-Optimized":
+        run_atkin_optimized()
+      case "Eratosthenes":
+        run_eratosthenes()
+      case "Simple":
+        run_primecalc_simple()
+
 if __name__ == "__main__":
-  run_atkin_optimized()
+  app = QApplication([])
+  window = Window()
+  window.show()
+  sys.exit(app.exec())
+
+  type_select = QComboBox();
+  type_select.addItems(['Simple', 'Eratosthenes', 'Atkin', 'Atkin-Optimized'])
