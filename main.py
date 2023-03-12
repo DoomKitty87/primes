@@ -1,7 +1,7 @@
 import time
 import math
 import sys
-from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QHBoxLayout, QLineEdit, QListWidget
+from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit
 from PyQt6.QtGui import QIntValidator
 
 #def prepare_command():
@@ -151,7 +151,7 @@ class MainWidget(QWidget):
     self.primes_count = QLineEdit()
     self.primes_count.setValidator(QIntValidator())
     self.output_text = QLabel()
-    self.layout = QHBoxLayout()
+    self.layout = QGridLayout()
     self.layout.addWidget(self.label)
     self.layout.addWidget(self.run_button)
     self.layout.addWidget(self.type_select)
@@ -185,7 +185,7 @@ class Window(QMainWindow):
 
   def _createStatusBar(self):
     status = QStatusBar()
-    status.showMessage("Status bar")
+    status.showMessage("Primes Calculated: 0")
     self.setStatusBar(status)
 
   def runPrimes(self):
@@ -205,7 +205,9 @@ class Window(QMainWindow):
         pass
     self.main_widget.output_text.clear()
     self.primesCalculated += len(output)
-    self.main_widget.output_text.setText('\n'.join([str(x) for x in output]))
+    self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}")
+    self.main_widget.output_text.setText(f"Largest prime found: {output[len(output) - 1]}")
+    #self.main_widget.output_text.setText('\n'.join([str(x) for x in output]))
 
 
 if __name__ == "__main__":
