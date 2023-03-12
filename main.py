@@ -2,6 +2,7 @@ import time
 import math
 import sys
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QHBoxLayout, QLineEdit, QListWidget
+from PyQt6.QtGui import QIntValidator
 
 #def prepare_command():
 #  tocompute = input("How many primes would you like to compute?: ")
@@ -144,13 +145,17 @@ class MainWidget(QWidget):
     self.run_button = QPushButton("Run primes")
     self.run_button.clicked.connect(parent.runPrimes)
     self.type_select = QComboBox();
+    self.mode_select = QComboBox();
     self.type_select.addItems(["Simple", "Eratosthenes", "Atkin", "Atkin-Optimized"])
+    self.mode_select.addItems(["Primes"])
     self.primes_count = QLineEdit()
-    self.output_text = QListWidget()
+    self.primes_count.setValidator(QIntValidator())
+    self.output_text = QLabel()
     self.layout = QHBoxLayout()
     self.layout.addWidget(self.label)
     self.layout.addWidget(self.run_button)
     self.layout.addWidget(self.type_select)
+    self.layout.addWidget(self.mode_select)
     self.layout.addWidget(self.primes_count)
     self.layout.addWidget(self.output_text)
     self.setLayout(self.layout)
@@ -167,6 +172,7 @@ class Window(QMainWindow):
     self._createToolBar()
     self._createStatusBar()
     self.primeCalc = PrimeCalculator()
+    self.primesCalculated = 0
 
   def _createMenu(self):
     menu = self.menuBar().addMenu("&Menu")
@@ -193,8 +199,14 @@ class Window(QMainWindow):
         output = self.primeCalc.run_eratosthenes(num)
       case "Simple":
         output = self.primeCalc.run_primecalc_simple(num)
+    
+    match self.main_widget.mode_select.currentText():
+      case "Primes":
+        pass
     self.main_widget.output_text.clear()
-    self.main_widget.output_text.addItems([str(x) for x in output])
+    self.primesCalculated += len(output)
+    self.main_widget.output_text.setText('\n'.join([str(x) for x in output]))
+
 
 if __name__ == "__main__":
   app = QApplication([])
