@@ -2,6 +2,7 @@ import time
 import math
 import sys
 import random
+import json
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
 
@@ -158,7 +159,9 @@ class MainWidget(QWidget):
     self.primes_count = QLineEdit()
     self.primes_count.setValidator(QIntValidator())
     self.file_output = QCheckBox("Output to text file?")
+    self.stats_output = QCheckBox("Save run statistics?")
     self.output_text = QLabel()
+    self.past_stats = QLabel()
 
     self.output_list = QLabel()
     self.layout = QGridLayout()
@@ -168,8 +171,10 @@ class MainWidget(QWidget):
     self.layout.addWidget(self.mode_select, 4, 0)
     self.layout.addWidget(self.primes_count, 5, 0)
     self.layout.addWidget(self.file_output, 6, 0)
-    self.layout.addWidget(self.output_text, 7, 0)
+    self.layout.addWidget(self.stats_output, 7, 0)
+    self.layout.addWidget(self.output_text, 8, 0)
     self.layout.addWidget(self.output_list, 1, 1, 25, 1)
+    self.layoug.addWidget(self.past_stats, 1, 2, 10, 1)
     self.setLayout(self.layout)
 
 
@@ -186,6 +191,19 @@ class Window(QMainWindow):
     self.primeCalc = PrimeCalculator()
     self.primesCalculated = 0
     self.cpuTotal = 0
+
+    with open("primesavedstats.json", "r") as f:
+      dat = json.loads(f.read())
+    displaystr = []
+    i = 0
+    for obj in dat:
+      if (i >= 10): break
+      date = obj['date']
+      primes = obj['primes']
+      cpu = obj['cpu']
+      displaystr.append(date + " Primes:" + primes + " Cpu Time:" + cpu)
+      i += 1
+    self.main_widget.past_stats.setText("\n".join(displaystr))
 
   def _createMenu(self):
     menu = self.menuBar().addMenu("&Menu")
@@ -206,19 +224,19 @@ class Window(QMainWindow):
     match self.main_widget.type_select.currentText():
       case "Atkin":
         output = self.primeCalc.run_atkin(num)
-        self.cpuTotal += output[1]
+        cpu = output[1]
         output = output[0]
       case "Atkin-Optimized":
         output = self.primeCalc.run_atkin_optimized(num)
-        self.cpuTotal += output[1]
+        cpu = output[1]
         output = output[0]
       case "Eratosthenes":
         output = self.primeCalc.run_eratosthenes(num)
-        self.cpuTotal += output[1]
+        cpu = output[1]
         output = output[0]
       case "Simple":
         output = self.primeCalc.run_primecalc_simple(num)
-        self.cpuTotal += output[1]
+        cpu = output[1]
         output = output[0]
     
     match self.main_widget.mode_select.currentText():
@@ -226,6 +244,7 @@ class Window(QMainWindow):
         pass
     self.main_widget.output_text.clear()
     self.primesCalculated += len(output)
+    self.cpuTotal += cpu
     self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}, Total Cpu Time Used: {self.cpuTotal}")
     try:
       self.main_widget.output_text.setText(f"Largest prime found: {output[len(output) - 1]}")
@@ -239,6 +258,18 @@ class Window(QMainWindow):
     except:
       pass
     self.main_widget.output_list.setText(strout)
+    if self.main_widget.stats_output.isChecked():
+      try:
+        f = open("primesavedstats.json", "x")
+      except:
+        f = open("primesavedstats.json", "w")
+      dat = json.load(f)
+      dat.append({
+        "date": time.time(),
+        "primes": str(len(output)),
+        "cputime": str(cpu)
+      })
+      f.write(json.dumps(dat, indent=2))
     if self.main_widget.file_output.isChecked():
       created = False
       i = 0
