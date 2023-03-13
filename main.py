@@ -1,6 +1,7 @@
 import time
 import math
 import sys
+import random
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
 
@@ -152,14 +153,17 @@ class MainWidget(QWidget):
     self.primes_count.setValidator(QIntValidator())
     self.file_output = QCheckBox("Output to text file?")
     self.output_text = QLabel()
+
+    self.output_list = QLabel()
     self.layout = QGridLayout()
-    self.layout.addWidget(self.label)
-    self.layout.addWidget(self.run_button)
-    self.layout.addWidget(self.type_select)
-    self.layout.addWidget(self.mode_select)
-    self.layout.addWidget(self.primes_count)
-    self.layout.addWidget(self.file_output)
-    self.layout.addWidget(self.output_text)
+    self.layout.addWidget(self.label, 1, 0)
+    self.layout.addWidget(self.run_button, 2, 0)
+    self.layout.addWidget(self.type_select, 3, 0)
+    self.layout.addWidget(self.mode_select, 4, 0)
+    self.layout.addWidget(self.primes_count, 5, 0)
+    self.layout.addWidget(self.file_output, 6, 0)
+    self.layout.addWidget(self.output_text, 7, 0)
+    self.layout.addWidget(self.output_list, 1, 1, 25, 1)
     self.setLayout(self.layout)
 
 
@@ -209,6 +213,11 @@ class Window(QMainWindow):
     self.primesCalculated += len(output)
     self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}")
     self.main_widget.output_text.setText(f"Largest prime found: {output[len(output) - 1]}")
+    strout = ""
+    for i in range(1, 25):
+      strout += str(output[random.randint(0, len(output) - 1)])
+      strout += "\n"
+    self.main_widget.output_list.setText(strout)
     if self.main_widget.file_output.isChecked():
       created = False
       i = 0
@@ -222,8 +231,6 @@ class Window(QMainWindow):
         i += 1
       f.write('\n'.join([str(x) for x in output]))
       f.close()
-    #self.main_widget.output_text.setText('\n'.join([str(x) for x in output]))
-
 
 if __name__ == "__main__":
   app = QApplication([])
