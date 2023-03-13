@@ -1,7 +1,7 @@
 import time
 import math
 import sys
-from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit
+from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
 
 #def prepare_command():
@@ -150,6 +150,7 @@ class MainWidget(QWidget):
     self.mode_select.addItems(["Primes"])
     self.primes_count = QLineEdit()
     self.primes_count.setValidator(QIntValidator())
+    self.file_output = QCheckBox("Output to text file?")
     self.output_text = QLabel()
     self.layout = QGridLayout()
     self.layout.addWidget(self.label)
@@ -157,6 +158,7 @@ class MainWidget(QWidget):
     self.layout.addWidget(self.type_select)
     self.layout.addWidget(self.mode_select)
     self.layout.addWidget(self.primes_count)
+    self.layout.addWidget(self.file_output)
     self.layout.addWidget(self.output_text)
     self.setLayout(self.layout)
 
@@ -207,6 +209,19 @@ class Window(QMainWindow):
     self.primesCalculated += len(output)
     self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}")
     self.main_widget.output_text.setText(f"Largest prime found: {output[len(output) - 1]}")
+    if self.main_widget.file_output.isChecked():
+      created = False
+      i = 0
+      f = None
+      while created is not True:
+        try:
+          f = open(f"primesoutput{i}.txt", "x")
+          created = True
+        except:
+          pass
+        i += 1
+      f.write('\n'.join([str(x) for x in output]))
+      f.close()
     #self.main_widget.output_text.setText('\n'.join([str(x) for x in output]))
 
 
