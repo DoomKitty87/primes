@@ -281,6 +281,16 @@ class Window(QMainWindow):
         "cputime": str(cpu)
       })
       with open("primesavedstats.json", "w") as f: f.write(json.dumps(dat, indent=2))
+      with open("primesavedstats.json", "r") as f:
+        dat = json.loads(f.read())
+      displaystr = []
+      i = 0
+      for obj in reversed(dat):
+        if (i >= 15): break
+        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(obj["cputime"]))
+        i += 1
+      self.main_widget.past_stats.setText("\n".join(displaystr))
+    
     if self.main_widget.file_output.isChecked():
       created = False
       i = 0

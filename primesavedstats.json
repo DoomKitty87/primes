@@ -1,0 +1,380 @@
+[
+  {
+    "date": 1678736005.678417,
+    "primes": "2094",
+    "computemethod": "Atkin-Optimized",
+    "cputime": "0.01824199999999987"
+  },
+  {
+    "date": 1678736014.25375,
+    "primes": "2094",
+    "computemethod": "Atkin-Optimized",
+    "cputime": "0.019360000000000266"
+  },
+  {
+    "date": 1678736014.6285539,
+    "primes": "2094",
+    "computemethod": "Atkin-Optimized",
+    "cputime": "0.021077000000000012"
+  },
+  {
+    "date": 1678736046.5194602,
+    "primes": "2094",
+    "computemethod": "Atkin-Optimized",
+    "cputime": "0.007216999999999807"
+  },
+  {
+    "date": 1678736047.086211,
+    "primes": "2094",
+    "computemethod": "Atkin-Optimized",
+    "cputime": "0.006909000000000276"
+  },
+  {
+    "date": 1678736101.5200782,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.017575999999999925"
+  },
+  {
+    "date": 1678736102.8634272,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.01777799999999996"
+  },
+  {
+    "date": 1678736103.564331,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.017788000000000026"
+  },
+  {
+    "date": 1678736104.036458,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.01771900000000004"
+  },
+  {
+    "date": 1678736104.276458,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.01741499999999996"
+  },
+  {
+    "date": 1678736104.443746,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.017289999999999806"
+  },
+  {
+    "date": 1678736104.7169101,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.017511000000000054"
+  },
+  {
+    "date": 1678736104.859306,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.01664600000000016"
+  },
+  {
+    "date": 1678736105.020672,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.017482999999999915"
+  },
+  {
+    "date": 1678736105.145061,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.015603000000000034"
+  },
+  {
+    "date": 1678736106.593295,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.01604200000000011"
+  },
+  {
+    "date": 1678736106.764867,
+    "primes": "203",
+    "computemethod": "Simple",
+    "cputime": "0.017503999999999964"
+  },
+  {
+    "date": 1678736145.9478369,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "9.799999999993148e-05"
+  },
+  {
+    "date": 1678736146.505399,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.60000000000105e-05"
+  },
+  {
+    "date": 1678736146.948305,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "1.8999999999991246e-05"
+  },
+  {
+    "date": 1678736147.297846,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "7.40000000000185e-05"
+  },
+  {
+    "date": 1678736147.557446,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.100000000000325e-05"
+  },
+  {
+    "date": 1678736147.741497,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "2.8000000000028002e-05"
+  },
+  {
+    "date": 1678736147.901718,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.2000000000032e-05"
+  },
+  {
+    "date": 1678736148.056062,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.699999999997374e-05"
+  },
+  {
+    "date": 1678736148.210199,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "0.00010799999999999699"
+  },
+  {
+    "date": 1678736148.362026,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "7.100000000004325e-05"
+  },
+  {
+    "date": 1678736148.5147588,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "0.00012300000000009526"
+  },
+  {
+    "date": 1678736148.658578,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.599999999989947e-05"
+  },
+  {
+    "date": 1678736148.8103402,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "8.999999999992347e-05"
+  },
+  {
+    "date": 1678736148.953161,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.799999999995698e-05"
+  },
+  {
+    "date": 1678736149.111627,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.199999999994098e-05"
+  },
+  {
+    "date": 1678736149.2553978,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "4.199999999987547e-05"
+  },
+  {
+    "date": 1678736149.409163,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.100000000002325e-05"
+  },
+  {
+    "date": 1678736149.567872,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.999999999994898e-05"
+  },
+  {
+    "date": 1678736149.72171,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.700000000003925e-05"
+  },
+  {
+    "date": 1678736149.882101,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.300000000014627e-05"
+  },
+  {
+    "date": 1678736150.0404701,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.6000000000056005e-05"
+  },
+  {
+    "date": 1678736150.2017741,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "7.599999999996498e-05"
+  },
+  {
+    "date": 1678736150.3539588,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "7.299999999998974e-05"
+  },
+  {
+    "date": 1678736150.513858,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "7.00000000000145e-05"
+  },
+  {
+    "date": 1678736150.681379,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "7.599999999996498e-05"
+  },
+  {
+    "date": 1678736150.8323588,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.900000000003125e-05"
+  },
+  {
+    "date": 1678736150.984608,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.700000000003925e-05"
+  },
+  {
+    "date": 1678736151.153354,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.6000000000056005e-05"
+  },
+  {
+    "date": 1678736151.312937,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.20000000000065e-05"
+  },
+  {
+    "date": 1678736151.472223,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "4.6999999999908226e-05"
+  },
+  {
+    "date": 1678736151.62967,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.100000000011427e-05"
+  },
+  {
+    "date": 1678736151.7889228,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.500000000000725e-05"
+  },
+  {
+    "date": 1678736151.942307,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.4000000000089514e-05"
+  },
+  {
+    "date": 1678736152.109783,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "4.199999999987547e-05"
+  },
+  {
+    "date": 1678736152.262483,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.2000000000032e-05"
+  },
+  {
+    "date": 1678736152.4240918,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.0000000000105516e-05"
+  },
+  {
+    "date": 1678736152.927252,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.6999999999842714e-05"
+  },
+  {
+    "date": 1678736153.097652,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.299999999992423e-05"
+  },
+  {
+    "date": 1678736153.257511,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "7.80000000000225e-05"
+  },
+  {
+    "date": 1678736153.416107,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "4.8000000000048004e-05"
+  },
+  {
+    "date": 1678736153.566899,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "3.799999999998249e-05"
+  },
+  {
+    "date": 1678736153.7380638,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.699999999997374e-05"
+  },
+  {
+    "date": 1678736153.887692,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "5.8000000000113516e-05"
+  },
+  {
+    "date": 1678736154.04114,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "6.799999999973494e-05"
+  },
+  {
+    "date": 1678736154.191046,
+    "primes": "6",
+    "computemethod": "Simple",
+    "cputime": "4.1999999999653426e-05"
+  },
+  {
+    "date": 1678736163.584367,
+    "primes": "807971",
+    "computemethod": "Atkin-Optimized",
+    "cputime": "5.064690000000001"
+  }
+]
