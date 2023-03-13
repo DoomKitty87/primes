@@ -174,7 +174,7 @@ class MainWidget(QWidget):
     self.layout.addWidget(self.stats_output, 7, 0)
     self.layout.addWidget(self.output_text, 8, 0)
     self.layout.addWidget(self.output_list, 1, 1, 25, 1)
-    self.layoug.addWidget(self.past_stats, 1, 2, 10, 1)
+    self.layout.addWidget(self.past_stats, 1, 2, 10, 1)
     self.setLayout(self.layout)
 
 
@@ -192,18 +192,19 @@ class Window(QMainWindow):
     self.primesCalculated = 0
     self.cpuTotal = 0
 
-    with open("primesavedstats.json", "r") as f:
-      dat = json.loads(f.read())
-    displaystr = []
-    i = 0
-    for obj in dat:
-      if (i >= 10): break
-      date = obj['date']
-      primes = obj['primes']
-      cpu = obj['cpu']
-      displaystr.append(date + " Primes:" + primes + " Cpu Time:" + cpu)
-      i += 1
-    self.main_widget.past_stats.setText("\n".join(displaystr))
+    try:
+      with open("primesavedstats.json", "r") as f:
+        dat = json.loads(f.read())
+      displaystr = []
+      i = 0
+      for obj in dat:
+        if (i >= 10): break
+        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Cpu Time: " + str(obj["cputime"]))
+        i += 1
+      self.main_widget.past_stats.setText("\n".join(displaystr))
+    except:
+      self.main_widget.past_stats.setText("Couldnt load stats")
+      pass
 
   def _createMenu(self):
     menu = self.menuBar().addMenu("&Menu")
@@ -221,27 +222,25 @@ class Window(QMainWindow):
 
   def runPrimes(self):
     num = (int)(self.main_widget.primes_count.text())
-    match self.main_widget.type_select.currentText():
-      case "Atkin":
-        output = self.primeCalc.run_atkin(num)
-        cpu = output[1]
-        output = output[0]
-      case "Atkin-Optimized":
-        output = self.primeCalc.run_atkin_optimized(num)
-        cpu = output[1]
-        output = output[0]
-      case "Eratosthenes":
-        output = self.primeCalc.run_eratosthenes(num)
-        cpu = output[1]
-        output = output[0]
-      case "Simple":
-        output = self.primeCalc.run_primecalc_simple(num)
-        cpu = output[1]
-        output = output[0]
+    if self.main_widget.type_select.currentText() == "Atkin":
+      output = self.primeCalc.run_atkin(num)
+      cpu = output[1]
+      output = output[0]
+    elif self.main_widget.type_select.currentText() == "Atkin-Optimized":
+      output = self.primeCalc.run_atkin_optimized(num)
+      cpu = output[1]
+      output = output[0]
+    elif self.main_widget.type_select.currentText() == "Eratosthenes":
+      output = self.primeCalc.run_eratosthenes(num)
+      cpu = output[1]
+      output = output[0]
+    elif self.main_widget.type_select.currentText() == "Simple":
+      output = self.primeCalc.run_primecalc_simple(num)
+      cpu = output[1]
+      output = output[0]
     
-    match self.main_widget.mode_select.currentText():
-      case "Primes":
-        pass
+    if self.main_widget.mode_select.currentText() == "Primes":
+      pass
     self.main_widget.output_text.clear()
     self.primesCalculated += len(output)
     self.cpuTotal += cpu
@@ -260,16 +259,23 @@ class Window(QMainWindow):
     self.main_widget.output_list.setText(strout)
     if self.main_widget.stats_output.isChecked():
       try:
-        f = open("primesavedstats.json", "x")
+        f = open("primesavedstats.json", "r")
       except:
         f = open("primesavedstats.json", "w")
-      dat = json.load(f)
+        f.close()
+        f = open("primesavedstats.json", "r")
+      try:
+        dat = json.loads(f.read())
+      except:
+        dat = []
+      f.close()
+      
       dat.append({
         "date": time.time(),
         "primes": str(len(output)),
         "cputime": str(cpu)
       })
-      f.write(json.dumps(dat, indent=2))
+      with open("primesavedstats.json", "w") as f: f.write(json.dumps(dat, indent=2))
     if self.main_widget.file_output.isChecked():
       created = False
       i = 0
