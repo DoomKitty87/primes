@@ -101,18 +101,24 @@ class PrimeCalculator():
 
   def run_primecalc_simple(self, num):
     start = time.time()
+    start_cpu = time.process_time()
     primes = list(filter(self.is_prime_simple, range(1, num)))
     end = time.time()
+    end_cpu = time.process_time()
     elapsed = end - start
-    return (primes)
+    elapsed_cpu = end_cpu - start_cpu
+    return (primes, elapsed_cpu)
     print('Finished in', elapsed, 'seconds.')
 
   def run_eratosthenes(self, num):
     start = time.time()
+    start_cpu = time.process_time()
     primes = self.sieve_of_eratosthenes(num)
     end = time.time()
+    end_cpu = time.process_time()
     elapsed = end - start
-    return (primes)
+    elapsed_cpu = end_cpu - start_cpu
+    return (primes, elapsed_cpu)
     print('Finished in', elapsed, 'seconds.')
 
   def run_atkin(self, num):
@@ -123,7 +129,7 @@ class PrimeCalculator():
     end_cpu = time.process_time()
     elapsed = end - start
     elapsed_cpu = end_cpu - start_cpu
-    return primes
+    return (primes, elapsed_cpu)
     print('Finished in', elapsed, 'seconds.')
     print('Used', elapsed_cpu, 'seconds of cpu time.')
 
@@ -135,7 +141,7 @@ class PrimeCalculator():
     end_cpu = time.process_time()
     elapsed = end - start
     elapsed_cpu = end_cpu - start_cpu
-    return (primes)
+    return (primes, elapsed_cpu)
     print('Finished in', elapsed, 'seconds.')
     print('Used', elapsed_cpu, 'seconds of cpu time.')
 
@@ -179,6 +185,7 @@ class Window(QMainWindow):
     self._createStatusBar()
     self.primeCalc = PrimeCalculator()
     self.primesCalculated = 0
+    self.cpuTotal = 0
 
   def _createMenu(self):
     menu = self.menuBar().addMenu("&Menu")
@@ -199,24 +206,38 @@ class Window(QMainWindow):
     match self.main_widget.type_select.currentText():
       case "Atkin":
         output = self.primeCalc.run_atkin(num)
+        self.cpuTotal += output[1]
+        output = output[0]
       case "Atkin-Optimized":
         output = self.primeCalc.run_atkin_optimized(num)
+        self.cpuTotal += output[1]
+        output = output[0]
       case "Eratosthenes":
         output = self.primeCalc.run_eratosthenes(num)
+        self.cpuTotal += output[1]
+        output = output[0]
       case "Simple":
         output = self.primeCalc.run_primecalc_simple(num)
+        self.cpuTotal += output[1]
+        output = output[0]
     
     match self.main_widget.mode_select.currentText():
       case "Primes":
         pass
     self.main_widget.output_text.clear()
     self.primesCalculated += len(output)
-    self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}")
-    self.main_widget.output_text.setText(f"Largest prime found: {output[len(output) - 1]}")
+    self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}, Total Cpu Time Used: {self.cpuTotal}")
+    try:
+      self.main_widget.output_text.setText(f"Largest prime found: {output[len(output) - 1]}")
+    except:
+      pass
     strout = ""
-    for i in range(1, 25):
-      strout += str(output[random.randint(0, len(output) - 1)])
-      strout += "\n"
+    try:
+      for i in range(1, 25):
+        strout += str(output[random.randint(0, len(output) - 1)])
+        strout += "\n"
+    except:
+      pass
     self.main_widget.output_list.setText(strout)
     if self.main_widget.file_output.isChecked():
       created = False
