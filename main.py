@@ -203,7 +203,7 @@ class Window(QMainWindow):
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
     except:
-      self.main_widget.past_stats.setText("Couldnt load stats")
+      self.main_widget.past_stats.setText("No saved statistics")
       pass
 
   def _createMenu(self):
