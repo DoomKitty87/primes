@@ -6,15 +6,6 @@ import json
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
 
-#def prepare_command():
-#  tocompute = input("How many primes would you like to compute?: ")
-#  n = ''
-#  for i in tocompute:
-#    if (i.isdigit()):
-#      n += i
-#  tocompute = n
-#  return int(tocompute)
-
 class PrimeCalculator():
 
   def is_prime_simple(self, num):
@@ -109,7 +100,6 @@ class PrimeCalculator():
     elapsed = end - start
     elapsed_cpu = end_cpu - start_cpu
     return (primes, elapsed_cpu)
-    print('Finished in', elapsed, 'seconds.')
 
   def run_eratosthenes(self, num):
     start = time.time()
@@ -120,7 +110,6 @@ class PrimeCalculator():
     elapsed = end - start
     elapsed_cpu = end_cpu - start_cpu
     return (primes, elapsed_cpu)
-    print('Finished in', elapsed, 'seconds.')
 
   def run_atkin(self, num):
     start = time.time()
@@ -131,8 +120,6 @@ class PrimeCalculator():
     elapsed = end - start
     elapsed_cpu = end_cpu - start_cpu
     return (primes, elapsed_cpu)
-    print('Finished in', elapsed, 'seconds.')
-    print('Used', elapsed_cpu, 'seconds of cpu time.')
 
   def run_atkin_optimized(self, num):
     start = time.time()
@@ -143,8 +130,6 @@ class PrimeCalculator():
     elapsed = end - start
     elapsed_cpu = end_cpu - start_cpu
     return (primes, elapsed_cpu)
-    print('Finished in', elapsed, 'seconds.')
-    print('Used', elapsed_cpu, 'seconds of cpu time.')
 
 class MainWidget(QWidget):
   def __init__(self, parent):
@@ -163,6 +148,14 @@ class MainWidget(QWidget):
     self.output_text = QLabel()
     self.past_stats = QLabel()
 
+    self.range_start = QLineEdit()
+    self.range_end = QLineEdit()
+    self.range_start.setValidator(QIntValidator())
+    self.range_start.setPlaceholderText("Start (inclusive)")
+    self.range_end.setValidator(QIntValidator())
+    self.range_end.setPlaceholderText("End (inclusive)")
+    self.use_range = QCheckBox("Limit output to range?")
+
     self.output_list = QLabel()
     self.layout = QGridLayout()
     self.layout.addWidget(self.label, 1, 0)
@@ -173,10 +166,12 @@ class MainWidget(QWidget):
     self.layout.addWidget(self.file_output, 6, 0)
     self.layout.addWidget(self.stats_output, 7, 0)
     self.layout.addWidget(self.output_text, 8, 0)
+    self.layout.addWidget(self.use_range, 9, 0)
+    self.layout.addWidget(self.range_start, 10, 0)
+    self.layout.addWidget(self.range_end, 11, 0)
     self.layout.addWidget(self.output_list, 1, 1, 25, 1)
     self.layout.addWidget(self.past_stats, 1, 2, 10, 1)
     self.setLayout(self.layout)
-
 
 class Window(QMainWindow):
   def __init__(self):
@@ -199,7 +194,7 @@ class Window(QMainWindow):
       i = 0
       for obj in dat:
         if (i >= 10): break
-        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(obj["cputime"]))
+        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(round(obj["cputime"], 3)))
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
     except:
@@ -221,7 +216,8 @@ class Window(QMainWindow):
     self.setStatusBar(status)
 
   def runPrimes(self):
-    num = (int)(self.main_widget.primes_count.text())
+    try: num = (int)(self.main_widget.primes_count.text())
+    except: return
     if self.main_widget.type_select.currentText() == "Atkin":
       cputemeth = "Atkin"
       output = self.primeCalc.run_atkin(num)
@@ -245,6 +241,17 @@ class Window(QMainWindow):
     
     if self.main_widget.mode_select.currentText() == "Primes":
       pass
+    
+    if self.main_widget.use_range.isChecked() and int(self.main_widget.range_start.text()) < int(self.main_widget.range_end.text()):
+      if self.main_widget.range_start.text() != '':
+        for n in output[:]:
+          if n < int(self.main_widget.range_start.text()):
+            output.remove(n)
+      if self.main_widget.range_end.text() != '':
+        for n in output[:]:
+          if n > int(self.main_widget.range_end.text()):
+            output.remove(n)
+    
     self.main_widget.output_text.clear()
     self.primesCalculated += len(output)
     self.cpuTotal += cpu
@@ -276,9 +283,9 @@ class Window(QMainWindow):
       
       dat.append({
         "date": time.time(),
-        "primes": str(len(output)),
+        "primes": len(output),
         "computemethod": cputemeth,
-        "cputime": str(cpu)
+        "cputime": cpu
       })
       with open("primesavedstats.json", "w") as f: f.write(json.dumps(dat, indent=2))
       with open("primesavedstats.json", "r") as f:
@@ -287,7 +294,7 @@ class Window(QMainWindow):
       i = 0
       for obj in reversed(dat):
         if (i >= 15): break
-        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(obj["cputime"]))
+        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(round(obj["cputime"], 3)))
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
     
