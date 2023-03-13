@@ -199,7 +199,7 @@ class Window(QMainWindow):
       i = 0
       for obj in dat:
         if (i >= 10): break
-        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Cpu Time: " + str(obj["cputime"]))
+        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(obj["cputime"]))
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
     except:
@@ -223,18 +223,22 @@ class Window(QMainWindow):
   def runPrimes(self):
     num = (int)(self.main_widget.primes_count.text())
     if self.main_widget.type_select.currentText() == "Atkin":
+      cputemeth = "Atkin"
       output = self.primeCalc.run_atkin(num)
       cpu = output[1]
       output = output[0]
     elif self.main_widget.type_select.currentText() == "Atkin-Optimized":
+      cputemeth = "Atkin-Optimized"
       output = self.primeCalc.run_atkin_optimized(num)
       cpu = output[1]
       output = output[0]
     elif self.main_widget.type_select.currentText() == "Eratosthenes":
+      cputemeth = "Eratosthenes"
       output = self.primeCalc.run_eratosthenes(num)
       cpu = output[1]
       output = output[0]
     elif self.main_widget.type_select.currentText() == "Simple":
+      cputemeth = "Simple"
       output = self.primeCalc.run_primecalc_simple(num)
       cpu = output[1]
       output = output[0]
@@ -273,6 +277,7 @@ class Window(QMainWindow):
       dat.append({
         "date": time.time(),
         "primes": str(len(output)),
+        "computemethod": cputemeth,
         "cputime": str(cpu)
       })
       with open("primesavedstats.json", "w") as f: f.write(json.dumps(dat, indent=2))
