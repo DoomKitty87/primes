@@ -211,6 +211,8 @@ class Window(QMainWindow):
       self.main_widget.past_stats.setText("\n".join(displaystr))
       self.main_widget.figure.clear()
       ax = self.main_widget.figure.add_subplot()
+      c = 0
+      colors = ['tab:blue', 'tab:orange', 'tab:gray', 'tab:olive']
       for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
         _ax = ax.twinx()
         _ax.set_yscale("log")
@@ -218,7 +220,8 @@ class Window(QMainWindow):
         yvals = [x["primes"] for x in plotdat if x["computemethod"] == _type]
         xvals.sort()
         yvals.sort()
-        _ax.plot(xvals, yvals, '*-')
+        _ax.plot(xvals, yvals, '*-', color=colors[c])
+        c += 1
       self.main_widget.canvas.draw()
     except:
       self.main_widget.past_stats.setText("No saved statistics")
@@ -324,6 +327,8 @@ class Window(QMainWindow):
       self.main_widget.past_stats.setText("\n".join(displaystr))
       self.main_widget.figure.clear()
       ax = self.main_widget.figure.add_subplot()
+      c = 0
+      colors = ['tab:blue', 'tab:orange', 'tab:gray', 'tab:olive']
       for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
         _ax = ax.twinx()
         _ax.set_yscale("log")
@@ -331,7 +336,8 @@ class Window(QMainWindow):
         yvals = [x["primes"] for x in plotdat if x["computemethod"] == _type]
         xvals.sort()
         yvals.sort()
-        _ax.plot(xvals, yvals, '*-', color='tab:red')
+        _ax.plot(xvals, yvals, '*-', color=colors[c])
+        c += 1
       self.main_widget.canvas.draw()
     
     if self.main_widget.file_output.isChecked():
