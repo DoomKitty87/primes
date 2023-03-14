@@ -1402,5 +1402,83 @@
     "primes": 6,
     "computemethod": "Simple",
     "cputime": 8.300000000005525e-05
+  },
+  {
+    "date": 1678811658.6067488,
+    "primes": 1,
+    "computemethod": "Simple",
+    "cputime": 4.599999999999049e-05
+  },
+  {
+    "date": 1678811722.015361,
+    "primes": 9,
+    "computemethod": "Simple",
+    "cputime": 7.299999999998974e-05
+  },
+  {
+    "date": 1678811830.888762,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 6.299999999992423e-05
+  },
+  {
+    "date": 1678811892.438503,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 6.299999999992423e-05
+  },
+  {
+    "date": 1678812643.769943,
+    "primes": 9,
+    "computemethod": "Simple",
+    "cputime": 0.00014799999999981495
+  },
+  {
+    "date": 1678812675.672281,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.00010099999999990672
+  },
+  {
+    "date": 1678812715.3422441,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 7.599999999996498e-05
+  },
+  {
+    "date": 1678812721.754036,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0003439999999996779
+  },
+  {
+    "date": 1678812723.760333,
+    "primes": 198,
+    "computemethod": "Simple",
+    "cputime": 0.008094000000000268
+  },
+  {
+    "date": 1678812727.848851,
+    "primes": 1452,
+    "computemethod": "Atkin",
+    "cputime": 0.020648
+  },
+  {
+    "date": 1678812728.9451652,
+    "primes": 1452,
+    "computemethod": "Atkin",
+    "cputime": 0.020537000000000027
+  },
+  {
+    "date": 1678812730.6901271,
+    "primes": 11407,
+    "computemethod": "Atkin",
+    "cputime": 0.10908300000000004
+  },
+  {
+    "date": 1678812733.305413,
+    "primes": 11407,
+    "computemethod": "Atkin",
+    "cputime": 0.10929499999999948
   }
 ]
