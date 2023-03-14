@@ -210,13 +210,14 @@ class Window(QMainWindow):
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
       self.main_widget.figure.clear()
-      ax = self.main_widget.figure.add_subplot()
-      ax.set_yscale("log")
-      xvals = [x["cputime"] for x in plotdat]
-      yvals = [x["primes"] for x in plotdat]
-      xvals.sort()
-      yvals.sort()
-      ax.plot(xvals, xvals, '*-')
+      for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
+        ax = self.main_widget.figure.add_subplot()
+        ax.set_yscale("log")
+        xvals = [i for i in (x["cputime"] if x["computemethod"] == _type else 0 for x in plotdat) if i != 0]
+        yvals = [i for i in (x["primes"] if x["computemethod"] == _type else 0 for x in plotdat) if i != 0]
+        xvals.sort()
+        yvals.sort()
+        ax.plot(xvals, yvals, '*-')
       self.main_widget.canvas.draw()
     except:
       self.main_widget.past_stats.setText("No saved statistics")
@@ -321,13 +322,14 @@ class Window(QMainWindow):
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
       self.main_widget.figure.clear()
-      ax = self.main_widget.figure.add_subplot()
-      ax.set_yscale("log")
-      xvals = [x["cputime"] for x in plotdat]
-      yvals = [x["primes"] for x in plotdat]
-      xvals.sort()
-      yvals.sort()
-      ax.plot(xvals, yvals, '*-')
+      for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
+        ax = self.main_widget.figure.add_subplot()
+        ax.set_yscale("log")
+        xvals = [i for i in (x["cputime"] if x["computemethod"] == _type else 0 for x in plotdat) if i != 0]
+        yvals = [i for i in (x["primes"] if x["computemethod"] == _type else 0 for x in plotdat) if i != 0]
+        xvals.sort()
+        yvals.sort()
+        ax.plot(xvals, yvals, '*-')
       self.main_widget.canvas.draw()
     
     if self.main_widget.file_output.isChecked():

@@ -1252,5 +1252,107 @@
     "primes": 10733,
     "computemethod": "Atkin-Optimized",
     "cputime": 0.03125
+  },
+  {
+    "date": 1678772962.4433587,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772964.0332892,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772966.312336,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772967.446722,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772968.6439044,
+    "primes": 200,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772970.3729975,
+    "primes": 1461,
+    "computemethod": "Simple",
+    "cputime": 0.328125
+  },
+  {
+    "date": 1678772970.847065,
+    "primes": 1461,
+    "computemethod": "Simple",
+    "cputime": 0.328125
+  },
+  {
+    "date": 1678773001.1842024,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678773041.8001935,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678773043.5055635,
+    "primes": 204,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678773045.642248,
+    "primes": 1484,
+    "computemethod": "Simple",
+    "cputime": 0.328125
+  },
+  {
+    "date": 1678773049.839226,
+    "primes": 200,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678773052.2951987,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678773053.7351942,
+    "primes": 205,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678773055.6503232,
+    "primes": 1500,
+    "computemethod": "Simple",
+    "cputime": 0.359375
+  },
+  {
+    "date": 1678773279.3846152,
+    "primes": 8,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678773350.461512,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
   }
 ]
