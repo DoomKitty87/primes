@@ -213,6 +213,9 @@ class Window(QMainWindow):
       ax = self.main_widget.figure.add_subplot()
       c = 0
       colors = ['tab:blue', 'tab:orange', 'tab:gray', 'tab:olive']
+      greatest = 0
+      yticks = []
+      yticklabels = []
       for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
         _ax = ax.twinx()
         _ax.set_yscale("log")
@@ -221,7 +224,17 @@ class Window(QMainWindow):
         xvals.sort()
         yvals.sort()
         _ax.plot(xvals, yvals, '*-', color=colors[c])
+        if yvals[-1:] != []:
+          if yvals[-1] > greatest:
+            yticks = _ax.get_yticks()
+            yticklabels = _ax.get_yticklabels()
+            greatest = yvals[-1]
+        _ax.set_yticks([])
+        _ax.set_yticklabels([])
         c += 1
+      ax.set_yscale("log")
+      ax.set_yticks(yticks)
+      ax.set_yticklabels(yticklabels)
       self.main_widget.canvas.draw()
     except:
       self.main_widget.past_stats.setText("No saved statistics")
@@ -331,6 +344,7 @@ class Window(QMainWindow):
       colors = ['tab:blue', 'tab:orange', 'tab:gray', 'tab:olive']
       greatest = 0
       yticks = []
+      yticklabels = []
       for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
         _ax = ax.twinx()
         _ax.set_yscale("log")
@@ -338,14 +352,18 @@ class Window(QMainWindow):
         yvals = [x["primes"] for x in plotdat if x["computemethod"] == _type]
         xvals.sort()
         yvals.sort()
+        _ax.plot(xvals, yvals, '*-', color=colors[c])
         if yvals[-1:] != []:
           if yvals[-1] > greatest:
             yticks = _ax.get_yticks()
+            yticklabels = _ax.get_yticklabels()
             greatest = yvals[-1]
         _ax.set_yticks([])
-        _ax.plot(xvals, yvals, '*-', color=colors[c])
+        _ax.set_yticklabels([])
         c += 1
+      ax.set_yscale("log")
       ax.set_yticks(yticks)
+      ax.set_yticklabels(yticklabels)
       self.main_widget.canvas.draw()
     
     if self.main_widget.file_output.isChecked():

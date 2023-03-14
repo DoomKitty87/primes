@@ -1480,5 +1480,59 @@
     "primes": 11407,
     "computemethod": "Atkin",
     "cputime": 0.10929499999999948
+  },
+  {
+    "date": 1678817930.234796,
+    "primes": 319,
+    "computemethod": "Simple",
+    "cputime": 0.04524499999999998
+  },
+  {
+    "date": 1678817936.110153,
+    "primes": 319,
+    "computemethod": "Simple",
+    "cputime": 0.04153700000000038
+  },
+  {
+    "date": 1678817940.1268601,
+    "primes": 318,
+    "computemethod": "Eratosthenes",
+    "cputime": 0.039235000000000575
+  },
+  {
+    "date": 1678817975.485461,
+    "primes": 5,
+    "computemethod": "Simple",
+    "cputime": 9.000000000014552e-05
+  },
+  {
+    "date": 1678817983.2439418,
+    "primes": 10567,
+    "computemethod": "Atkin",
+    "cputime": 0.10288300000000028
+  },
+  {
+    "date": 1678817986.7520268,
+    "primes": 10567,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.07596900000000018
+  },
+  {
+    "date": 1678817989.6336908,
+    "primes": 86757,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.4475129999999998
+  },
+  {
+    "date": 1678818349.565333,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 8.199999999991547e-05
+  },
+  {
+    "date": 1678818408.486913,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 8.699999999994823e-05
   }
 ]
