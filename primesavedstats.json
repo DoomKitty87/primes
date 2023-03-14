@@ -1354,5 +1354,53 @@
     "primes": 6,
     "computemethod": "Simple",
     "cputime": 0.0
+  },
+  {
+    "date": 1678810233.654069,
+    "primes": 203,
+    "computemethod": "Simple",
+    "cputime": 0.02535799999999977
+  },
+  {
+    "date": 1678810234.766623,
+    "primes": 203,
+    "computemethod": "Simple",
+    "cputime": 0.02550199999999947
+  },
+  {
+    "date": 1678810236.422755,
+    "primes": 203,
+    "computemethod": "Simple",
+    "cputime": 0.0258440000000002
+  },
+  {
+    "date": 1678810239.60352,
+    "primes": 202,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0014860000000007645
+  },
+  {
+    "date": 1678810241.5313148,
+    "primes": 1473,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0148539999999997
+  },
+  {
+    "date": 1678810242.9010859,
+    "primes": 11589,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0817180000000004
+  },
+  {
+    "date": 1678810245.5087948,
+    "primes": 95282,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.49821199999999877
+  },
+  {
+    "date": 1678810435.3362691,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 8.300000000005525e-05
   }
 ]
