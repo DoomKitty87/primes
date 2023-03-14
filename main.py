@@ -2,9 +2,14 @@ import time
 import math
 import sys
 import random
-import json
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
+import json
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+
 
 class PrimeCalculator():
 
@@ -156,6 +161,9 @@ class MainWidget(QWidget):
     self.range_end.setPlaceholderText("End (inclusive)")
     self.use_range = QCheckBox("Limit output to range?")
 
+    self.figure = plt.figure()
+    self.canvas = FigureCanvas(self.figure)
+
     self.output_list = QLabel()
     self.layout = QGridLayout()
     self.layout.addWidget(self.label, 1, 0)
@@ -171,6 +179,8 @@ class MainWidget(QWidget):
     self.layout.addWidget(self.range_end, 11, 0)
     self.layout.addWidget(self.output_list, 1, 1, 25, 1)
     self.layout.addWidget(self.past_stats, 1, 2, 10, 1)
+    self.layout.addWidget(self.output_list, 1, 3, 5, 1)
+    self.layout.addWidget(self.canvas, 1, 4, 10, 1)
     self.setLayout(self.layout)
 
 class Window(QMainWindow):
@@ -191,12 +201,23 @@ class Window(QMainWindow):
       with open("primesavedstats.json", "r") as f:
         dat = json.loads(f.read())
       displaystr = []
+      plotdat = []
       i = 0
-      for obj in dat:
-        if (i >= 10): break
+      for obj in reversed(dat):
+        if (i >= 15): break
+        plotdat.append(obj)
         displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(round(obj["cputime"], 3)))
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
+      self.main_widget.figure.clear()
+      ax = self.main_widget.figure.add_subplot()
+      ax.set_yscale("log")
+      xvals = [x["cputime"] for x in plotdat]
+      yvals = [x["primes"] for x in plotdat]
+      xvals.sort()
+      yvals.sort()
+      ax.plot(xvals, xvals, '*-')
+      self.main_widget.canvas.draw()
     except:
       self.main_widget.past_stats.setText("No saved statistics")
       pass
@@ -291,12 +312,23 @@ class Window(QMainWindow):
       with open("primesavedstats.json", "r") as f:
         dat = json.loads(f.read())
       displaystr = []
+      plotdat = []
       i = 0
       for obj in reversed(dat):
         if (i >= 15): break
+        plotdat.append(obj)
         displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(round(obj["cputime"], 3)))
         i += 1
       self.main_widget.past_stats.setText("\n".join(displaystr))
+      self.main_widget.figure.clear()
+      ax = self.main_widget.figure.add_subplot()
+      ax.set_yscale("log")
+      xvals = [x["cputime"] for x in plotdat]
+      yvals = [x["primes"] for x in plotdat]
+      xvals.sort()
+      yvals.sort()
+      ax.plot(xvals, yvals, '*-')
+      self.main_widget.canvas.draw()
     
     if self.main_widget.file_output.isChecked():
       created = False

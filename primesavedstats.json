@@ -64,5 +64,1193 @@
     "primes": 5429,
     "computemethod": "Atkin-Optimized",
     "cputime": 0.02706199999999992
+  },
+  {
+    "date": 1678771006.1860347,
+    "primes": 48,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771009.1902232,
+    "primes": 2407,
+    "computemethod": "Simple",
+    "cputime": 0.9375
+  },
+  {
+    "date": 1678771019.2893996,
+    "primes": 1355743,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 7.046875
+  },
+  {
+    "date": 1678771029.3929322,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771031.6194594,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771032.83464,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771033.3027322,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771033.4867766,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771033.9937549,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771034.1377413,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771044.1552594,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771045.225232,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771045.6032555,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771045.9931822,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771046.1702619,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771046.3402534,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771047.4590914,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771048.4168284,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771048.6106455,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771049.259633,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771049.5786612,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771049.735625,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771050.0736625,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771050.396668,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771050.5537422,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771050.7177162,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771050.8857555,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771051.0526974,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771051.2126634,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771051.3727117,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771051.545689,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771051.7096472,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771051.8627343,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771052.0277262,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771052.1847632,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771052.4917753,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771052.6447659,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771052.8028038,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771052.9619257,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771053.1307807,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771053.3008044,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771053.462801,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771053.6248374,
+    "primes": 322,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678771098.20648,
+    "primes": 33,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678771100.619257,
+    "primes": 1604,
+    "computemethod": "Simple",
+    "cputime": 0.40625
+  },
+  {
+    "date": 1678772061.9755726,
+    "primes": 51,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772063.3707242,
+    "primes": 51,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772064.332278,
+    "primes": 51,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772065.8118362,
+    "primes": 50,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772067.904551,
+    "primes": 20534,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0625
+  },
+  {
+    "date": 1678772069.5658343,
+    "primes": 20534,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0625
+  },
+  {
+    "date": 1678772078.6727836,
+    "primes": 1455410,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 7.40625
+  },
+  {
+    "date": 1678772126.8488803,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772129.4745824,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772130.077571,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772130.6225762,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772130.7751358,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772130.9417157,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772131.0877469,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772131.5650713,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772131.7451131,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772131.9001472,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772132.036192,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772132.1802254,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772132.6488395,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772132.8013968,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772132.9522204,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772133.8734462,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772134.3419962,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772135.591162,
+    "primes": 202,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772139.106169,
+    "primes": 30,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772140.4370024,
+    "primes": 200,
+    "computemethod": "Atkin",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772143.4508982,
+    "primes": 11525,
+    "computemethod": "Atkin",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772143.5966196,
+    "primes": 11525,
+    "computemethod": "Atkin",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772143.7276492,
+    "primes": 11525,
+    "computemethod": "Atkin",
+    "cputime": 0.0625
+  },
+  {
+    "date": 1678772143.8386905,
+    "primes": 11525,
+    "computemethod": "Atkin",
+    "cputime": 0.0625
+  },
+  {
+    "date": 1678772144.5228598,
+    "primes": 11525,
+    "computemethod": "Atkin",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772146.6112216,
+    "primes": 94706,
+    "computemethod": "Atkin",
+    "cputime": 0.546875
+  },
+  {
+    "date": 1678772349.1488116,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772391.971297,
+    "primes": 0,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772436.3761919,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772437.7168746,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772438.6494431,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772439.225454,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772439.7052732,
+    "primes": 31,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772441.5720243,
+    "primes": 204,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678772443.9048734,
+    "primes": 1484,
+    "computemethod": "Simple",
+    "cputime": 0.34375
+  },
+  {
+    "date": 1678772445.7400517,
+    "primes": 1484,
+    "computemethod": "Simple",
+    "cputime": 0.328125
+  },
+  {
+    "date": 1678772452.9655302,
+    "primes": 814063,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 4.0
+  },
+  {
+    "date": 1678772473.5877306,
+    "primes": 0,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772477.0608277,
+    "primes": 5,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772479.838461,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772480.4530323,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772480.9702778,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772481.7364502,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772482.1930568,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772482.593151,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772482.9697475,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772483.323853,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772483.7929819,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772484.1481082,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772484.487822,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772484.7513843,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772485.061156,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772485.6968706,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772486.0909681,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772486.6669888,
+    "primes": 26,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772490.0910814,
+    "primes": 169,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772495.7244818,
+    "primes": 1230,
+    "computemethod": "Simple",
+    "cputime": 0.21875
+  },
+  {
+    "date": 1678772500.8090641,
+    "primes": 1755,
+    "computemethod": "Simple",
+    "cputime": 0.484375
+  },
+  {
+    "date": 1678772505.737504,
+    "primes": 2263,
+    "computemethod": "Simple",
+    "cputime": 0.828125
+  },
+  {
+    "date": 1678772508.104749,
+    "primes": 3,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772584.197404,
+    "primes": 9,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772651.624745,
+    "primes": 13,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772654.370206,
+    "primes": 571,
+    "computemethod": "Simple",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772656.8965936,
+    "primes": 0,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772659.2372785,
+    "primes": 33,
+    "computemethod": "Simple",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772661.478367,
+    "primes": 241,
+    "computemethod": "Simple",
+    "cputime": 0.015625
+  },
+  {
+    "date": 1678772665.5842748,
+    "primes": 240,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772666.1254094,
+    "primes": 240,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772666.425477,
+    "primes": 240,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772666.5835125,
+    "primes": 240,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772668.0365055,
+    "primes": 13951,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772670.1913228,
+    "primes": 115048,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.4375
+  },
+  {
+    "date": 1678772673.6293337,
+    "primes": 4,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772675.8984106,
+    "primes": 189,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772677.3307915,
+    "primes": 1369,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0
+  },
+  {
+    "date": 1678772678.7137303,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772683.7324352,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772684.230672,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772684.441233,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772684.6172879,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772684.769332,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772684.9183762,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772685.070434,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772685.2240686,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772685.3752859,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772685.5476625,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772685.700215,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772685.8807993,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772686.0048313,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772686.1418948,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772686.2818289,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772686.452964,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772688.0490317,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772688.212075,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772688.3501096,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772688.510151,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772688.658464,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772688.808781,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772688.9577856,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772689.1223435,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772689.2663465,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772689.4243407,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772689.592355,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772689.7549102,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772689.9233398,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772690.0952687,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772690.2483675,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772690.408346,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772690.57989,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772690.7398677,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772690.9137752,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772691.0737095,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772691.2284772,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772691.3863394,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772691.5473757,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772691.7208862,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772691.8902256,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772692.04136,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772692.2143536,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772692.3833401,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772692.545339,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772692.7093942,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772692.8743377,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772693.0393374,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772693.3673368,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772693.5323634,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772693.6963425,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772693.8563573,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772694.013344,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772694.313368,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772694.4823396,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772694.665346,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772694.8233814,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772694.9963365,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772695.1613393,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772695.4773555,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772695.654336,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772695.822246,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772696.0103369,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772696.163336,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772696.3446174,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772696.5008605,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772699.550008,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772699.7563424,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
+  },
+  {
+    "date": 1678772700.040403,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.046875
+  },
+  {
+    "date": 1678772700.2092698,
+    "primes": 10733,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.03125
   }
 ]
