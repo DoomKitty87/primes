@@ -1534,5 +1534,101 @@
     "primes": 6,
     "computemethod": "Simple",
     "cputime": 8.699999999994823e-05
+  },
+  {
+    "date": 1678818718.2738209,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 8.099999999999774e-05
+  },
+  {
+    "date": 1678818774.681438,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 9.799999999993148e-05
+  },
+  {
+    "date": 1678819871.111725,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 6.299999999992423e-05
+  },
+  {
+    "date": 1678819901.2955399,
+    "primes": 203,
+    "computemethod": "Simple",
+    "cputime": 0.019940999999999987
+  },
+  {
+    "date": 1678819919.587819,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 7.899999999994023e-05
+  },
+  {
+    "date": 1678819940.3305311,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 7.2000000000072e-05
+  },
+  {
+    "date": 1678819958.989789,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 8.999999999992347e-05
+  },
+  {
+    "date": 1678820252.981997,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 6.100000000008876e-05
+  },
+  {
+    "date": 1678820277.228266,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 7.899999999994023e-05
+  },
+  {
+    "date": 1678820366.1595578,
+    "primes": 6,
+    "computemethod": "Simple",
+    "cputime": 8.399999999997299e-05
+  },
+  {
+    "date": 1678820388.735342,
+    "primes": 30,
+    "computemethod": "Simple",
+    "cputime": 0.00041000000000002146
+  },
+  {
+    "date": 1678820393.2475011,
+    "primes": 30,
+    "computemethod": "Simple",
+    "cputime": 0.00047499999999978115
+  },
+  {
+    "date": 1678820394.935447,
+    "primes": 30,
+    "computemethod": "Simple",
+    "cputime": 0.0005079999999999529
+  },
+  {
+    "date": 1678820396.4327738,
+    "primes": 30,
+    "computemethod": "Simple",
+    "cputime": 0.0005649999999999267
+  },
+  {
+    "date": 1678820397.553581,
+    "primes": 30,
+    "computemethod": "Simple",
+    "cputime": 0.0006340000000002455
+  },
+  {
+    "date": 1678820560.514305,
+    "primes": 9,
+    "computemethod": "Simple",
+    "cputime": 0.00010000000000021103
   }
 ]

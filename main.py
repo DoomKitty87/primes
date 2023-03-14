@@ -226,15 +226,19 @@ class Window(QMainWindow):
         _ax.plot(xvals, yvals, '*-', color=colors[c])
         if yvals[-1:] != []:
           if yvals[-1] > greatest:
-            yticks = _ax.get_yticks()
+            yticks = _ax.get_yticks() 
             yticklabels = _ax.get_yticklabels()
             greatest = yvals[-1]
         _ax.set_yticks([])
         _ax.set_yticklabels([])
+        _ax.spines[['right', 'top']].set_visible(False)
+        _ax.tick_params('both', bottom=False, top=False, right=False, left=False)
         c += 1
       ax.set_yscale("log")
       ax.set_yticks(yticks)
       ax.set_yticklabels(yticklabels)
+      ax.spines[['right', 'top']].set_visible(False)
+      ax.tick_params('both', right=False)
       self.main_widget.canvas.draw()
     except:
       self.main_widget.past_stats.setText("No saved statistics")
@@ -360,10 +364,14 @@ class Window(QMainWindow):
             greatest = yvals[-1]
         _ax.set_yticks([])
         _ax.set_yticklabels([])
+        _ax.spines[['right', 'top']].set_visible(False)
+        _ax.tick_params('both', bottom=False, top=False, right=False, left=False)
         c += 1
       ax.set_yscale("log")
       ax.set_yticks(yticks)
       ax.set_yticklabels(yticklabels)
+      ax.spines[['right', 'top']].set_visible(False)
+      ax.tick_params('both', right=False)
       self.main_widget.canvas.draw()
     
     if self.main_widget.file_output.isChecked():
