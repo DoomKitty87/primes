@@ -195,6 +195,7 @@ class Window(QMainWindow):
   def __init__(self):
     super().__init__(parent=None)
     self.setWindowTitle("Fun With Primes")
+    self.showMaximized()
 
     self.main_widget = MainWidget(self)
     self.setCentralWidget(self.main_widget)
