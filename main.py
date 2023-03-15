@@ -310,13 +310,20 @@ class Window(QMainWindow):
     self.cpuTotal += cpu
     self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}, Total Cpu Time Used: {self.cpuTotal}")
     try:
-      self.main_widget.output_text.setText(f"Largest prime found: {output[len(output) - 1]}")
+      if (len(str(output[-1])) > 10):
+        self.main_widget.output_text.setText(f"Largest prime found: {str(output[-1])[:5]}...{str(output[-1])[-5:]} ({len(str(output[-1]))} digits)")
+      else:
+        self.main_widget.output_text.setText(f"Largest prime found: {output[-1]}")
     except:
       pass
     strout = ""
     try:
       for i in range(1, 25):
-        strout += str(output[random.randint(0, len(output) - 1)])
+        trystr = str(output[random.randint(0, len(output) - 1)])
+        if (len(trystr) > 10):
+          strout += trystr[:5] + "..." + trystr[-5:] + f"({len(trystr)} digits)"
+        else:
+          strout += trystr
         strout += "\n"
     except:
       pass
