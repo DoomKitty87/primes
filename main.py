@@ -1,3 +1,4 @@
+from re import M
 import time
 import math
 import sys
@@ -136,6 +137,13 @@ class PrimeCalculator():
     elapsed_cpu = end_cpu - start_cpu
     return (primes, elapsed_cpu)
 
+  def lucas_lehmer(self, num):
+    s = 4
+    m = 2 ** p -1
+    for _ in range(p - 2):
+      s = ((s * s) - 2) % m
+    return s == 0
+
 class MainWidget(QWidget):
   def __init__(self, parent):
     super().__init__(parent=parent)
@@ -145,7 +153,7 @@ class MainWidget(QWidget):
     self.type_select = QComboBox();
     self.mode_select = QComboBox();
     self.type_select.addItems(["Simple", "Eratosthenes", "Atkin", "Atkin-Optimized"])
-    self.mode_select.addItems(["Primes"])
+    self.mode_select.addItems(["Primes", "Mersenne"])
     self.primes_count = QLineEdit()
     self.primes_count.setValidator(QIntValidator())
     self.file_output = QCheckBox("Output to text file?")
@@ -238,7 +246,7 @@ class Window(QMainWindow):
       ax.set_yticks(yticks)
       ax.set_yticklabels(yticklabels)
       ax.spines[['right', 'top']].set_visible(False)
-      ax.tick_params('both', right=False)
+      ax.tick_params('both', bottom=True, left=True, top=False, right=False)
       self.main_widget.canvas.draw()
     except:
       self.main_widget.past_stats.setText("No saved statistics")
@@ -284,6 +292,15 @@ class Window(QMainWindow):
     
     if self.main_widget.mode_select.currentText() == "Primes":
       pass
+    elif self.main_widget.mode_select.currentText() == "Mersenne":
+
+
+      newout = []
+      for n in output[:]:
+        for i in output[:]:
+          if n == 2 ** i - 1:
+            newout.append(n)
+      output = newout
     
     if self.main_widget.use_range.isChecked() and int(self.main_widget.range_start.text()) < int(self.main_widget.range_end.text()):
       if self.main_widget.range_start.text() != '':
@@ -371,7 +388,7 @@ class Window(QMainWindow):
       ax.set_yticks(yticks)
       ax.set_yticklabels(yticklabels)
       ax.spines[['right', 'top']].set_visible(False)
-      ax.tick_params('both', right=False)
+      ax.tick_params('both', bottom=True, left=True, top=False, right=False)
       self.main_widget.canvas.draw()
     
     if self.main_widget.file_output.isChecked():

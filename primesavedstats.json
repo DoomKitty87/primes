@@ -1630,5 +1630,11 @@
     "primes": 9,
     "computemethod": "Simple",
     "cputime": 0.00010000000000021103
+  },
+  {
+    "date": 1678830438.660598,
+    "primes": 9,
+    "computemethod": "Simple",
+    "cputime": 0.0001020000000000465
   }
 ]
