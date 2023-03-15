@@ -1642,5 +1642,83 @@
     "primes": 733409,
     "computemethod": "Atkin-Optimized",
     "cputime": 3.546875
+  },
+  {
+    "date": 1678847754.356397,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 8.0
+  },
+  {
+    "date": 1678847801.9109917,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.421875
+  },
+  {
+    "date": 1678847827.3084586,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.5625
+  },
+  {
+    "date": 1678847833.5180073,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.578125
+  },
+  {
+    "date": 1678847839.5577457,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.59375
+  },
+  {
+    "date": 1678847885.9507515,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.484375
+  },
+  {
+    "date": 1678847892.8521438,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.484375
+  },
+  {
+    "date": 1678847912.923903,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.6875
+  },
+  {
+    "date": 1678847919.8155072,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.546875
+  },
+  {
+    "date": 1678847925.151891,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.46875
+  },
+  {
+    "date": 1678847930.5988955,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.515625
+  },
+  {
+    "date": 1678849099.879127,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.625
+  },
+  {
+    "date": 1678849115.006213,
+    "primes": 733409,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 3.515625
   }
 ]

@@ -75,7 +75,7 @@ class PrimeCalculator():
       P.append(2)
     if num > 3:
       P.append(3)
-    r = range(1, mpz(int(math.sqrt(num)) + 1))
+    r = range(1, int(math.sqrt(num)) + 1)
     sieve = [False] * (num + 1)
     for x in r:
       for y in r:
