@@ -1,8 +1,8 @@
-from re import M
 import time
 import math
 import sys
 import random
+from gmpy2 import mpz
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
 import json
@@ -75,7 +75,7 @@ class PrimeCalculator():
       P.append(2)
     if num > 3:
       P.append(3)
-    r = range(1, int(math.sqrt(num)) + 1)
+    r = range(1, mpz(int(math.sqrt(num)) + 1))
     sieve = [False] * (num + 1)
     for x in r:
       for y in r:
@@ -88,7 +88,7 @@ class PrimeCalculator():
         if n <= num and n % 12 == 7: sieve[n] = not sieve[n]
         n = xx3 - yy
         if x > y and n < num and n % 12 == 11: sieve[n] = not sieve[n]
-    for x in range(5, int(math.sqrt(num))):
+    for x in range(5, mpz(int(math.sqrt(num)))):
       if sieve[x]:
         xx = x * x
         for y in range(xx, num + 1, xx):
@@ -139,8 +139,8 @@ class PrimeCalculator():
 
   def lucas_lehmer(self, num):
     s = 4
-    m = 2 ** p -1
-    for _ in range(p - 2):
+    m = 2 ** num -1
+    for _ in range(num - 2):
       s = ((s * s) - 2) % m
     return s == 0
 
@@ -293,14 +293,7 @@ class Window(QMainWindow):
     if self.main_widget.mode_select.currentText() == "Primes":
       pass
     elif self.main_widget.mode_select.currentText() == "Mersenne":
-
-
-      newout = []
-      for n in output[:]:
-        for i in output[:]:
-          if n == 2 ** i - 1:
-            newout.append(n)
-      output = newout
+      output = [2 ** n - 1 for n in output[:] if self.primeCalc.lucas_lehmer(n)]
     
     if self.main_widget.use_range.isChecked() and int(self.main_widget.range_start.text()) < int(self.main_widget.range_end.text()):
       if self.main_widget.range_start.text() != '':
