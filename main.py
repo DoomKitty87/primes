@@ -2,9 +2,9 @@ import time
 import math
 import sys
 import random
-import ctypes
-import pathlib
-import julia
+#import ctypes
+#import pathlib
+#import julia
 from gmpy2 import mpz
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
@@ -181,31 +181,112 @@ class PrimeCalculator():
       
     return False
 
-  def miller_rabin(self, num):
+  def miller_rabin(self, num, k):
     if num <= 1 or num == 4:
       return False
     if num <= 3:
       return True
-
     d = num - 1
     while not d & 1:
       d //= 2
 
-    for i in range(4):
+    for i in range(k):
       if (self.test_miller(d, num) == False):
         return False
     
     return True
 
   def run_miller(self, num):
-    start = time.time()
-    start_cpu = time.process_time()
-    result = self.miller_rabin(num)
-    end = time.time()
-    end_cpu = time.process_time()
-    elapsed = end - start
-    elapsed_cpu = end_cpu - start_cpu
-    return (result, elapsed_cpu)
+    return self.miller_rabin(num, 4)
+
+  def run_bpsw(self, num):
+    if self.miller_rabin(num, 2):
+      if self.lucas_primality(num):
+        return True
+    return False
+
+  def prime_factors(self, num, factors):
+    if not num & 1:
+      factors.append(2)
+    while not num & 1:
+      num = num // 2
+
+    for i in range(3, int(math.sqrt(num)) + 1, 2):
+      if (num % i == 0):
+        factors.append(i)
+      while (num % i == 0):
+        num = num // i
+    if (num > 2):
+      factors.append(num)
+    return factors
+  
+  def lucas_power(self, n, r, q):
+    total = n
+    for _ in range(1, r):
+      total = (total * n) % q
+    return total
+
+  def lucas_primality(self, num):
+    if num == 1:
+      return False
+    if num == 2:
+      return True
+    if not num & 1:
+      return False
+    
+    factors = []
+    factors = self.prime_factors(num - 1, factors)
+
+    rand = [i + 2 for i in range(num - 3)]
+    random.shuffle(rand)
+    for i in range(num - 2):
+      a = rand[i]
+      if (self.lucas_power(a, num - 1, num) != 1):
+        return False
+      flag = True
+      for k in range(len(factors)):
+        if (self.lucas_power(a, (num - 1) // factors[k], num) == 1):
+          flag = False
+          break
+      if flag:
+        return True
+    return False
+
+  def pow_fermat(self, a, n, p):
+    res = 1
+    a = a % p
+
+    while n > 0:
+      if not n & 1:
+        res = (res * a) % p
+        n = n - 1
+      else:
+        a = (a ** 2) % p
+        n = n // 2
+
+    return res % p
+  
+  def fermat_test(self, num, k):
+    if num == 1 or num == 4:
+      return False
+    elif num == 2 or num == 3:
+      return True
+    
+    else:
+      for i in range(k):
+        a = random.randint(2, num - 2)
+        if self.pow_fermat(a, num - 1, num) != 1:
+          return False
+    
+    return True
+
+  def run_fermat(self, num):
+    if not num & 1:
+      return False
+    for i in [3, 5, 7, 11, 13]:
+      if num % i == 0 and num != i: return False
+    return self.fermat_test(num, 3)
+
 
 class MainWidget(QWidget):
   def __init__(self, parent):
@@ -228,9 +309,9 @@ class MainWidget(QWidget):
     self.run_button_large = QPushButton("Run large prime finder")
     self.run_button_large.clicked.connect(parent.runLarge)
     self.large_type = QComboBox()
-    self.large_type.addItems(["Miller-Rabin"])
+    self.large_type.addItems(["Miller-Rabin", "Baille-PSW", "Fermat"])
     self.large_class = QComboBox()
-    self.large_class.addItems(["Primes"])
+    self.large_class.addItems(["Primes", "Mersenne"])
     self.large_input = QLineEdit()
     self.large_input.setValidator(QIntValidator())
     self.large_input.setPlaceholderText("Number of digits in goal")
@@ -393,19 +474,73 @@ class Window(QMainWindow):
   def runLarge(self):
     try: num = (int)(self.main_widget.large_input.text())
     except: return
-    if self.main_widget.large_type.currentText() == "Miller-Rabin":
-      cputemeth = "Miller-Rabin"
-      tryval = 0
-      output = (False, 0)
-      cpustart = time.process_time()
-      while (output[0] == False):
-        tryval = random.randrange(pow(10, num - 1) - 1, pow(10, num), 2)
-        output = self.primeCalc.run_miller(tryval)
-      cpu = time.process_time() - cpustart
-      output = tryval
-
     if self.main_widget.large_class.currentText() == "Primes":
-      pass
+      if self.main_widget.large_type.currentText() == "Miller-Rabin":
+        cputemeth = "Miller-Rabin"
+        tryval = 0
+        output = False
+        cpustart = time.process_time()
+        while (output == False):
+          tryval = random.randrange(pow(10, num - 1) - 1, pow(10, num), 2)
+          output = self.primeCalc.run_miller(tryval)
+        cpu = time.process_time() - cpustart
+        output = tryval
+      elif self.main_widget.large_type.currentText() == "Baille-PSW":
+        cputemeth = "Baille-PSW"
+        tryval = 0
+        output = False
+        cpustart = time.process_time()
+        while (output == False):
+          tryval = random.randrange(pow(10, num - 1) - 1, pow(10, num), 2)
+          output = self.primeCalc.run_bpsw(tryval)
+        cpu = time.process_time() - cpustart
+        output = tryval
+      elif self.main_widget.large_type.currentText() == "Fermat":
+        cputemeth = "Fermat"
+        tryval = 0
+        output = False
+        cpustart = time.process_time()
+        while (output == False):
+          tryval = random.randrange(pow(10, num - 1) - 1, pow(10, num), 2)
+          output = self.primeCalc.run_fermat(tryval)
+        cpu = time.process_time() - cpustart
+        output = tryval
+    elif self.main_widget.large_class.currentText() == "Mersenne":
+      if self.main_widget.large_type.currentText() == "Miller-Rabin":
+        cputemeth = "Miller-Rabin"
+        tryval = 0
+        output = False
+        cpustart = time.process_time()
+        tryout = self.primeCalc.run_atkin_optimized(10 ** num)[0]
+        while (output == False):
+          tryval = tryout[random.randrange(int(len(tryout) / 2), len(tryout))]
+          output = self.primeCalc.run_miller((2 ** tryval) - 1)
+          tryval = ((2 ** tryval) - 1)
+        cpu = time.process_time() - cpustart
+        output = tryval
+      elif self.main_widget.large_type.currentText() == "Baille-PSW":
+        cputemeth = "Baille-PSW"
+        tryval = 0
+        output = False
+        cpustart = time.process_time()
+        while (output == False):
+          tryval = random.randrange(pow(10, num - 1) - 1, pow(10, num), 2)
+          output = self.primeCalc.run_bpsw(tryval)
+        cpu = time.process_time() - cpustart
+        output = tryval
+      elif self.main_widget.large_type.currentText() == "Fermat":
+        cputemeth = "Fermat"
+        tryval = 0
+        output = False
+        cpustart = time.process_time()
+        tryout = self.primeCalc.run_atkin_optimized(10 * num)[0]
+        while (output == False):
+          tryval = tryout[random.range(1, len(tryout))]
+          output = self.primeCalc.run_fermat(tryval)
+        cpu = time.process_time() - cpustart
+        output = tryval
+        
+
 
     self.main_widget.output_text.clear()
     self.primesCalculated += 1
