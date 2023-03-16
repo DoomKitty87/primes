@@ -533,10 +533,11 @@ class Window(QMainWindow):
         tryval = 0
         output = False
         cpustart = time.process_time()
-        tryout = self.primeCalc.run_atkin_optimized(10 * num)[0]
+        tryout = self.primeCalc.run_atkin_optimized(10 ** num)[0]
         while (output == False):
-          tryval = tryout[random.range(1, len(tryout))]
-          output = self.primeCalc.run_fermat(tryval)
+          tryval = tryout[random.randrange(int(len(tryout) / 2), len(tryout))]
+          output = self.primeCalc.run_fermat((2 ** tryval) - 1)
+          tryval = ((2 ** tryval) - 1)
         cpu = time.process_time() - cpustart
         output = tryval
         
