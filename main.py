@@ -132,7 +132,7 @@ class PrimeCalculator():
   def run_atkin_optimized(self, num):
     start = time.time()
     start_cpu = time.process_time()
-    #libname = pathlib.Path().absolute() / "primecalc.so"
+    #libname = pathlib.Path().absolute() / "libprimecalc.so"
     #c_lib = ctypes.CDLL(libname)
     #primes = c_lib.atkin_optimized(num)
     primes = self.atkin_optimized(num)
