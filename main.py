@@ -2,6 +2,8 @@ import time
 import math
 import sys
 import random
+import ctypes
+import pathlib
 from gmpy2 import mpz
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
@@ -130,7 +132,9 @@ class PrimeCalculator():
   def run_atkin_optimized(self, num):
     start = time.time()
     start_cpu = time.process_time()
-    primes = self.atkin_optimized(num)
+    libname = pathlib.Path().absolute() / "primecalc.so"
+    c_lib = ctypes.CDLL(libname)
+    primes = c_lib.atkin_optimized(num)
     end = time.time()
     end_cpu = time.process_time()
     elapsed = end - start
@@ -144,15 +148,72 @@ class PrimeCalculator():
       s = ((s * s) - 2) % m
     return s == 0
 
+  def power(self, x, y, p):
+    res = 1
+    x = x % p
+    while (y > 0):
+      if (y & 1):
+        res = (res * x) % p
+
+      y = y>>1
+      x = (x * x) % p
+    
+    return res
+
+  def test_miller(self, d, n):
+    a = 2 + random.randint(1, n - 4)
+
+    x = self.power(a, d, n)
+
+    if (x == 1 or x == n - 1):
+      return True
+    
+    while (d != n - 1):
+      x = (x * x) % n
+      d *= 2
+
+      if (x == 1):
+        return False
+      if (x == n - 1):
+        return True
+      
+      return False
+
+  def miller_rabin(self, num):
+    if num <= 1 or num == 4:
+      return False
+    if num <= 3:
+      return True
+
+    d = num - 1
+    while (d % 2 == 0):
+      d //= 2
+
+    for i in range(4):
+      if (self.test_miller(d, num) == False):
+        return False
+    
+    return True
+
+  def run_miller(self, num):
+    start = time.time()
+    start_cpu = time.process_time()
+    result = self.miller_rabin(num)
+    end = time.time()
+    end_cpu = time.process_time()
+    elapsed = end - start
+    elapsed_cpu = end_cpu - start_cpu
+    return (result, elapsed_cpu)
+
 class MainWidget(QWidget):
   def __init__(self, parent):
     super().__init__(parent=parent)
-    self.label = QLabel("Run prime generator")
-    self.run_button = QPushButton("Run primes")
+    self.label = QLabel("Finding prime ranges")
+    self.run_button = QPushButton("Run prime range")
     self.run_button.clicked.connect(parent.runPrimes)
-    self.type_select = QComboBox();
-    self.mode_select = QComboBox();
-    self.type_select.addItems(["Simple", "Eratosthenes", "Atkin", "Atkin-Optimized"])
+    self.type_select = QComboBox()
+    self.mode_select = QComboBox()
+    self.type_select.addItems(["Simple", "Eratosthenes", "Atkin", "Atkin-Optimized", "Miller-Rabin"])
     self.mode_select.addItems(["Primes", "Mersenne"])
     self.primes_count = QLineEdit()
     self.primes_count.setValidator(QIntValidator())
@@ -160,6 +221,17 @@ class MainWidget(QWidget):
     self.stats_output = QCheckBox("Save run statistics?")
     self.output_text = QLabel()
     self.past_stats = QLabel()
+
+    self.largelabel = QLabel("Finding large primes")
+    self.run_button_large = QPushButton("Run large prime finder")
+    self.run_button_large.clicked.connect(parent.runLarge)
+    self.large_type = QComboBox()
+    self.large_type.addItems(["Miller-Rabin"])
+    self.large_class = QComboBox()
+    self.large_class.addItems(["Primes"])
+    self.large_input = QLineEdit()
+    self.large_input.setValidator(QIntValidator())
+    self.large_input.setPlaceholderText("Number of digits in goal")
 
     self.range_start = QLineEdit()
     self.range_end = QLineEdit()
@@ -185,6 +257,9 @@ class MainWidget(QWidget):
     self.layout.addWidget(self.use_range, 9, 0)
     self.layout.addWidget(self.range_start, 10, 0)
     self.layout.addWidget(self.range_end, 11, 0)
+    self.layout.addWidget(self.largelabel, 12, 0)
+    self.layout.addWidget(self.run_button_large, 13, 0)
+    self.layout.addWidget(self.large_input, 14, 0)
     self.layout.addWidget(self.output_list, 1, 1, 25, 1)
     self.layout.addWidget(self.past_stats, 1, 2, 10, 1)
     self.layout.addWidget(self.output_list, 1, 3, 5, 1)
@@ -267,6 +342,21 @@ class Window(QMainWindow):
     status.showMessage("Primes Calculated: 0")
     self.setStatusBar(status)
 
+  def runLarge(self):
+    try: num = (int)(self.main_widget.large_input.text())
+    except: return
+    if self.main_widget.large_type.currentText() == "Miller-Rabin":
+      cputemeth = "Miller-Rabin"
+      tryval = 0
+      output = False
+      while (output[0] == False):
+        tryval = random.randint(pow(10, num - 1), pow(10, num) - 1)
+        output = self.primeCalc.run_miller(tryval)
+      cpu = output[1]
+      output = tryval
+
+    if self.main_widget.large_class..currentText() == "Primes":
+
   def runPrimes(self):
     try: num = (int)(self.main_widget.primes_count.text())
     except: return
@@ -290,6 +380,13 @@ class Window(QMainWindow):
       output = self.primeCalc.run_primecalc_simple(num)
       cpu = output[1]
       output = output[0]
+    elif self.main_widget.type_select.currentText() == "Miller-Rabin":
+      cputemeth = "Miller-Rabin"
+      output = self.primeCalc.run_miller(num)
+      cpu = output[1]
+      if (output):
+        output = num
+      else: output = 0
     
     if self.main_widget.mode_select.currentText() == "Primes":
       pass
@@ -307,25 +404,41 @@ class Window(QMainWindow):
             output.remove(n)
     
     self.main_widget.output_text.clear()
-    self.primesCalculated += len(output)
+    if output != 0:
+      if type(output) is int:
+        self.primesCalculated += 1
+      else:
+        self.primesCalculated += len(output)
     self.cpuTotal += cpu
     self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}, Total Cpu Time Used: {self.cpuTotal}")
     try:
-      if (len(str(output[-1])) > 10):
-        self.main_widget.output_text.setText(f"Largest prime found: {str(output[-1])[:5]}...{str(output[-1])[-5:]} ({len(str(output[-1]))} digits)")
+      if type(output) is int:
+        if (len(str(output)) > 10):
+          self.main_widget.output_text.setText(f"Number is prime: {str(output)[:5]}...{str(output)[-5:]}")
+        else:
+          self.main_widget.output_text.setText(f"Number is prime: {str(output)}")
       else:
-        self.main_widget.output_text.setText(f"Largest prime found: {output[-1]}")
+        if (len(str(output[-1])) > 10):
+          self.main_widget.output_text.setText(f"Largest prime found: {str(output[-1])[:5]}...{str(output[-1])[-5:]} ({len(str(output[-1]))} digits)")
+        else:
+          self.main_widget.output_text.setText(f"Largest prime found: {output[-1]}")
     except:
       pass
     strout = ""
     try:
-      for i in range(1, 25):
-        trystr = str(output[random.randint(0, len(output) - 1)])
-        if (len(trystr) > 10):
-          strout += trystr[:5] + "..." + trystr[-5:] + f"({len(trystr)} digits)"
+      if type(output) is int:
+        if output == 0:
+          strout = "Number is not prime."
         else:
-          strout += trystr
-        strout += "\n"
+          strout = "Number is prime."
+      else:
+        for i in range(1, 25):
+          trystr = str(output[random.randint(0, len(output) - 1)])
+          if (len(trystr) > 10):
+            strout += trystr[:5] + "..." + trystr[-5:] + f"({len(trystr)} digits)"
+          else:
+            strout += trystr
+          strout += "\n"
     except:
       pass
     self.main_widget.output_list.setText(strout)

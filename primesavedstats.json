@@ -1720,5 +1720,53 @@
     "primes": 733409,
     "computemethod": "Atkin-Optimized",
     "cputime": 3.515625
+  },
+  {
+    "date": 1678903978.2193348,
+    "primes": 169,
+    "computemethod": "Simple",
+    "cputime": 0.014083999999999985
+  },
+  {
+    "date": 1678903982.335753,
+    "primes": 168,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0015049999999998676
+  },
+  {
+    "date": 1678903985.706228,
+    "primes": 1229,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.01181299999999963
+  },
+  {
+    "date": 1678903993.7057931,
+    "primes": 9592,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0726779999999998
+  },
+  {
+    "date": 1678903996.5870872,
+    "primes": 78498,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.41116699999999984
+  },
+  {
+    "date": 1678904005.339437,
+    "primes": 664579,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 4.314570000000001
+  },
+  {
+    "date": 1678904067.1383,
+    "primes": 13,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.0017290000000009798
+  },
+  {
+    "date": 1678904166.3047738,
+    "primes": 13,
+    "computemethod": "Simple",
+    "cputime": 0.014763999999999555
   }
 ]
