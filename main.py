@@ -4,6 +4,7 @@ import sys
 import random
 import ctypes
 import pathlib
+import julia
 from gmpy2 import mpz
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QGridLayout, QMainWindow, QStatusBar, QToolBar, QPushButton, QLineEdit, QCheckBox
 from PyQt6.QtGui import QIntValidator
