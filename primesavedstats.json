@@ -1768,5 +1768,23 @@
     "primes": 13,
     "computemethod": "Simple",
     "cputime": 0.014763999999999555
+  },
+  {
+    "date": 1678945560.6818075,
+    "primes": 78704,
+    "computemethod": "Simple",
+    "cputime": 2.703125
+  },
+  {
+    "date": 1678945581.8576202,
+    "primes": 78498,
+    "computemethod": "Atkin",
+    "cputime": 0.4375
+  },
+  {
+    "date": 1678945874.015583,
+    "primes": 78498,
+    "computemethod": "Atkin-Optimized",
+    "cputime": 0.296875
   }
 ]

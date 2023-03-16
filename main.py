@@ -17,7 +17,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 class PrimeCalculator():
 
   def is_prime_simple(self, num):
-    for x in range(2, num):
+    for x in range(2, int(math.sqrt(num))):
       if num % x == 0:
         return False
     return True
@@ -132,9 +132,10 @@ class PrimeCalculator():
   def run_atkin_optimized(self, num):
     start = time.time()
     start_cpu = time.process_time()
-    libname = pathlib.Path().absolute() / "primecalc.so"
-    c_lib = ctypes.CDLL(libname)
-    primes = c_lib.atkin_optimized(num)
+    #libname = pathlib.Path().absolute() / "primecalc.so"
+    #c_lib = ctypes.CDLL(libname)
+    #primes = c_lib.atkin_optimized(num)
+    primes = self.atkin_optimized(num)
     end = time.time()
     end_cpu = time.process_time()
     elapsed = end - start
@@ -177,7 +178,7 @@ class PrimeCalculator():
       if (x == n - 1):
         return True
       
-      return False
+    return False
 
   def miller_rabin(self, num):
     if num <= 1 or num == 4:
@@ -186,7 +187,7 @@ class PrimeCalculator():
       return True
 
     d = num - 1
-    while (d % 2 == 0):
+    while not d & 1:
       d //= 2
 
     for i in range(4):
@@ -213,7 +214,7 @@ class MainWidget(QWidget):
     self.run_button.clicked.connect(parent.runPrimes)
     self.type_select = QComboBox()
     self.mode_select = QComboBox()
-    self.type_select.addItems(["Simple", "Eratosthenes", "Atkin", "Atkin-Optimized", "Miller-Rabin"])
+    self.type_select.addItems(["Simple", "Eratosthenes", "Atkin", "Atkin-Optimized"])
     self.mode_select.addItems(["Primes", "Mersenne"])
     self.primes_count = QLineEdit()
     self.primes_count.setValidator(QIntValidator())
@@ -260,6 +261,8 @@ class MainWidget(QWidget):
     self.layout.addWidget(self.largelabel, 12, 0)
     self.layout.addWidget(self.run_button_large, 13, 0)
     self.layout.addWidget(self.large_input, 14, 0)
+    self.layout.addWidget(self.large_type, 15, 0)
+    self.layout.addWidget(self.large_class, 16, 0)
     self.layout.addWidget(self.output_list, 1, 1, 25, 1)
     self.layout.addWidget(self.past_stats, 1, 2, 10, 1)
     self.layout.addWidget(self.output_list, 1, 3, 5, 1)
@@ -270,7 +273,6 @@ class Window(QMainWindow):
   def __init__(self):
     super().__init__(parent=None)
     self.setWindowTitle("Fun With Primes")
-    self.showMaximized()
 
     self.main_widget = MainWidget(self)
     self.setCentralWidget(self.main_widget)
@@ -280,6 +282,7 @@ class Window(QMainWindow):
     self.primeCalc = PrimeCalculator()
     self.primesCalculated = 0
     self.cpuTotal = 0
+    self.showMaximized()
 
     try:
       with open("primesavedstats.json", "r") as f:
@@ -342,20 +345,114 @@ class Window(QMainWindow):
     status.showMessage("Primes Calculated: 0")
     self.setStatusBar(status)
 
+  def reloadGraph(self):
+    with open("primesavedstats.json", "r") as f:
+      dat = json.loads(f.read())
+    displaystr = []
+    plotdat = []
+    i = 0
+    for obj in reversed(dat):
+      if (i >= 15): break
+      plotdat.append(obj)
+      displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(round(obj["cputime"], 3)))
+      i += 1
+    self.main_widget.past_stats.setText("\n".join(displaystr))
+    self.main_widget.figure.clear()
+    ax = self.main_widget.figure.add_subplot()
+    c = 0
+    colors = ['tab:blue', 'tab:orange', 'tab:gray', 'tab:olive']
+    greatest = 0
+    yticks = []
+    yticklabels = []
+    for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
+      _ax = ax.twinx()
+      _ax.set_yscale("log")
+      xvals = [x["cputime"] for x in plotdat if x["computemethod"] == _type]
+      yvals = [x["primes"] for x in plotdat if x["computemethod"] == _type]
+      xvals.sort()
+      yvals.sort()
+      _ax.plot(xvals, yvals, '*-', color=colors[c])
+      if yvals[-1:] != []:
+        if yvals[-1] > greatest:
+          yticks = _ax.get_yticks()
+          yticklabels = _ax.get_yticklabels()
+          greatest = yvals[-1]
+      _ax.set_yticks([])
+      _ax.set_yticklabels([])
+      _ax.spines[['right', 'top']].set_visible(False)
+      _ax.tick_params('both', bottom=False, top=False, right=False, left=False)
+      c += 1
+    ax.set_yscale("log")
+    ax.set_yticks(yticks)
+    ax.set_yticklabels(yticklabels)
+    ax.spines[['right', 'top']].set_visible(False)
+    ax.tick_params('both', bottom=True, left=True, top=False, right=False)
+    self.main_widget.canvas.draw()
+
   def runLarge(self):
     try: num = (int)(self.main_widget.large_input.text())
     except: return
     if self.main_widget.large_type.currentText() == "Miller-Rabin":
       cputemeth = "Miller-Rabin"
       tryval = 0
-      output = False
+      output = (False, 0)
+      cpustart = time.process_time()
       while (output[0] == False):
-        tryval = random.randint(pow(10, num - 1), pow(10, num) - 1)
+        tryval = random.randrange(pow(10, num - 1) - 1, pow(10, num), 2)
         output = self.primeCalc.run_miller(tryval)
-      cpu = output[1]
+      cpu = time.process_time() - cpustart
       output = tryval
 
-    if self.main_widget.large_class..currentText() == "Primes":
+    if self.main_widget.large_class.currentText() == "Primes":
+      pass
+
+    self.main_widget.output_text.clear()
+    self.primesCalculated += 1
+    self.cpuTotal += cpu
+    self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}, Total Cpu Time Used: {self.cpuTotal}")
+
+
+    if (len(str(output)) > 30):
+      self.main_widget.output_text.setText(f"Prime Found: {str(output)[:15]}...{str(output)[-15:]} ({len(str(output))} digits)")
+    else:
+      self.main_widget.output_text.setText(f"Prime Found: {str(output)}")
+
+    if self.main_widget.stats_output.isChecked():
+      try:
+        f = open("primesavedstats.json", "r")
+      except:
+        f = open("primesavedstats.json", "w")
+        f.close()
+        f = open("primesavedstats.json", "r")
+      try:
+        dat = json.loads(f.read())
+      except:
+        dat = []
+      f.close()
+      
+      dat.append({
+        "date": time.time(),
+        "primes": len(str(output)),
+        "computemethod": cputemeth,
+        "cputime": cpu
+      })
+      with open("primesavedstats.json", "w") as f: f.write(json.dumps(dat, indent=2))
+      self.reloadGraph()
+    
+    if self.main_widget.file_output.isChecked():
+      created = False
+      i = 0
+      f = None
+      while created is not True:
+        try:
+          f = open(f"primesoutput{i}.txt", "x")
+          created = True
+        except:
+          pass
+        i += 1
+      f.write(str(output))
+      f.close()
+      
 
   def runPrimes(self):
     try: num = (int)(self.main_widget.primes_count.text())
@@ -380,13 +477,6 @@ class Window(QMainWindow):
       output = self.primeCalc.run_primecalc_simple(num)
       cpu = output[1]
       output = output[0]
-    elif self.main_widget.type_select.currentText() == "Miller-Rabin":
-      cputemeth = "Miller-Rabin"
-      output = self.primeCalc.run_miller(num)
-      cpu = output[1]
-      if (output):
-        output = num
-      else: output = 0
     
     if self.main_widget.mode_select.currentText() == "Primes":
       pass
@@ -404,41 +494,25 @@ class Window(QMainWindow):
             output.remove(n)
     
     self.main_widget.output_text.clear()
-    if output != 0:
-      if type(output) is int:
-        self.primesCalculated += 1
-      else:
-        self.primesCalculated += len(output)
+    self.primesCalculated += len(output)
     self.cpuTotal += cpu
     self.statusBar().showMessage(f"Primes Calculated: {self.primesCalculated}, Total Cpu Time Used: {self.cpuTotal}")
     try:
-      if type(output) is int:
-        if (len(str(output)) > 10):
-          self.main_widget.output_text.setText(f"Number is prime: {str(output)[:5]}...{str(output)[-5:]}")
-        else:
-          self.main_widget.output_text.setText(f"Number is prime: {str(output)}")
+      if (len(str(output[-1])) > 10):
+        self.main_widget.output_text.setText(f"Largest prime found: {str(output[-1])[:5]}...{str(output[-1])[-5:]} ({len(str(output[-1]))} digits)")
       else:
-        if (len(str(output[-1])) > 10):
-          self.main_widget.output_text.setText(f"Largest prime found: {str(output[-1])[:5]}...{str(output[-1])[-5:]} ({len(str(output[-1]))} digits)")
-        else:
-          self.main_widget.output_text.setText(f"Largest prime found: {output[-1]}")
+        self.main_widget.output_text.setText(f"Largest prime found: {output[-1]}")
     except:
       pass
     strout = ""
     try:
-      if type(output) is int:
-        if output == 0:
-          strout = "Number is not prime."
+      for i in range(1, 25):
+        trystr = str(output[random.randint(0, len(output) - 1)])
+        if (len(trystr) > 10):
+          strout += trystr[:5] + "..." + trystr[-5:] + f"({len(trystr)} digits)"
         else:
-          strout = "Number is prime."
-      else:
-        for i in range(1, 25):
-          trystr = str(output[random.randint(0, len(output) - 1)])
-          if (len(trystr) > 10):
-            strout += trystr[:5] + "..." + trystr[-5:] + f"({len(trystr)} digits)"
-          else:
-            strout += trystr
-          strout += "\n"
+          strout += trystr
+        strout += "\n"
     except:
       pass
     self.main_widget.output_list.setText(strout)
@@ -462,48 +536,7 @@ class Window(QMainWindow):
         "cputime": cpu
       })
       with open("primesavedstats.json", "w") as f: f.write(json.dumps(dat, indent=2))
-      with open("primesavedstats.json", "r") as f:
-        dat = json.loads(f.read())
-      displaystr = []
-      plotdat = []
-      i = 0
-      for obj in reversed(dat):
-        if (i >= 15): break
-        plotdat.append(obj)
-        displaystr.append(str(obj["date"]) + " Primes: " + str(obj["primes"]) + " Method: " + obj["computemethod"] + " Cpu Time: " + str(round(obj["cputime"], 3)))
-        i += 1
-      self.main_widget.past_stats.setText("\n".join(displaystr))
-      self.main_widget.figure.clear()
-      ax = self.main_widget.figure.add_subplot()
-      c = 0
-      colors = ['tab:blue', 'tab:orange', 'tab:gray', 'tab:olive']
-      greatest = 0
-      yticks = []
-      yticklabels = []
-      for _type in [self.main_widget.type_select.itemText(i) for i in range(self.main_widget.type_select.count())]:
-        _ax = ax.twinx()
-        _ax.set_yscale("log")
-        xvals = [x["cputime"] for x in plotdat if x["computemethod"] == _type]
-        yvals = [x["primes"] for x in plotdat if x["computemethod"] == _type]
-        xvals.sort()
-        yvals.sort()
-        _ax.plot(xvals, yvals, '*-', color=colors[c])
-        if yvals[-1:] != []:
-          if yvals[-1] > greatest:
-            yticks = _ax.get_yticks()
-            yticklabels = _ax.get_yticklabels()
-            greatest = yvals[-1]
-        _ax.set_yticks([])
-        _ax.set_yticklabels([])
-        _ax.spines[['right', 'top']].set_visible(False)
-        _ax.tick_params('both', bottom=False, top=False, right=False, left=False)
-        c += 1
-      ax.set_yscale("log")
-      ax.set_yticks(yticks)
-      ax.set_yticklabels(yticklabels)
-      ax.spines[['right', 'top']].set_visible(False)
-      ax.tick_params('both', bottom=True, left=True, top=False, right=False)
-      self.main_widget.canvas.draw()
+      self.reloadGraph()
     
     if self.main_widget.file_output.isChecked():
       created = False
