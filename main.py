@@ -204,6 +204,12 @@ class PrimeCalculator():
       if self.lucas_primality(num):
         return True
     return False
+  
+  def run_bpsw_mersenne(self, num):
+    if self.miller_rabin(num, 2):
+      if self.lucas_lehmer(num):
+        return True
+    return False
 
   def prime_factors(self, num, factors):
     if not num & 1:
@@ -251,20 +257,6 @@ class PrimeCalculator():
       if flag:
         return True
     return False
-
-  def pow_fermat(self, a, n, p):
-    res = 1
-    a = a % p
-
-    while n > 0:
-      if not n & 1:
-        res = (res * a) % p
-        n = n - 1
-      else:
-        a = (a ** 2) % p
-        n = n // 2
-
-    return res % p
   
   def fermat_test(self, num, k):
     if num == 1 or num == 4:
@@ -275,7 +267,7 @@ class PrimeCalculator():
     else:
       for i in range(k):
         a = random.randint(2, num - 2)
-        if self.pow_fermat(a, num - 1, num) != 1:
+        if (((a ** (num - 1)) % num) != 1):
           return False
     
     return True
@@ -283,9 +275,9 @@ class PrimeCalculator():
   def run_fermat(self, num):
     if not num & 1:
       return False
-    for i in [3, 5, 7, 11, 13]:
-      if num % i == 0 and num != i: return False
-    return self.fermat_test(num, 3)
+    #for i in [3, 5, 7, 11, 13]:
+      #if num % i == 0 and num != i: return False
+    return self.fermat_test(num, 2)
 
 
 class MainWidget(QWidget):
@@ -524,7 +516,7 @@ class Window(QMainWindow):
         output = False
         cpustart = time.process_time()
         for i in reversed(range(0, num + 1)):
-          if (self.primeCalc.run_bpsw((2 ** i) - 1)):
+          if (self.primeCalc.run_bpsw_mersenne((2 ** i) - 1)):
             output = (2 ** i) - 1
             break
         if output == False:
@@ -535,7 +527,6 @@ class Window(QMainWindow):
         tryval = 0
         output = False
         cpustart = time.process_time()
-        tryout = self.primeCalc.run_atkin_optimized(10 ** num)[0]
         for i in reversed(range(0, num + 1)):
           if (self.primeCalc.run_fermat((2 ** i) - 1)):
             output = (2 ** i) - 1
