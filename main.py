@@ -511,37 +511,38 @@ class Window(QMainWindow):
         tryval = 0
         output = False
         cpustart = time.process_time()
-        tryout = self.primeCalc.run_atkin_optimized(10 ** num)[0]
-        while (output == False):
-          tryval = tryout[random.randrange(int(len(tryout) / 2), len(tryout))]
-          output = self.primeCalc.run_miller((2 ** tryval) - 1)
-          tryval = ((2 ** tryval) - 1)
+        for i in reversed(range(0, num + 1)):
+          if (self.primeCalc.run_miller((2 ** i) - 1)):
+            output = (2 ** i) - 1
+            break
+        if output == False:
+          output = 0
         cpu = time.process_time() - cpustart
-        output = tryval
       elif self.main_widget.large_type.currentText() == "Baille-PSW":
         cputemeth = "Baille-PSW"
         tryval = 0
         output = False
         cpustart = time.process_time()
-        while (output == False):
-          tryval = random.randrange(pow(10, num - 1) - 1, pow(10, num), 2)
-          output = self.primeCalc.run_bpsw(tryval)
+        for i in reversed(range(0, num + 1)):
+          if (self.primeCalc.run_bpsw((2 ** i) - 1)):
+            output = (2 ** i) - 1
+            break
+        if output == False:
+          output = 0
         cpu = time.process_time() - cpustart
-        output = tryval
       elif self.main_widget.large_type.currentText() == "Fermat":
         cputemeth = "Fermat"
         tryval = 0
         output = False
         cpustart = time.process_time()
         tryout = self.primeCalc.run_atkin_optimized(10 ** num)[0]
-        while (output == False):
-          tryval = tryout[random.randrange(int(len(tryout) / 2), len(tryout))]
-          output = self.primeCalc.run_fermat((2 ** tryval) - 1)
-          tryval = ((2 ** tryval) - 1)
-        cpu = time.process_time() - cpustart
-        output = tryval
-        
-
+        for i in reversed(range(0, num + 1)):
+          if (self.primeCalc.run_fermat((2 ** i) - 1)):
+            output = (2 ** i) - 1
+            break
+        if output == False:
+          output = 0
+        cpu = time.process_time() - cpustart        
 
     self.main_widget.output_text.clear()
     self.primesCalculated += 1
